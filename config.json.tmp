@@ -1,0 +1,7 @@
+{
+  "Instagram": {
+    "ClientId": "abc123",
+    "ClientSecret": "secret123",
+    "RedirectUri": "http://localhost:8090/redirect"
+  }
+}

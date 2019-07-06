@@ -1,12 +1,19 @@
 package main
 
 import (
-	"github.com/ugniusin/instago/application/gallery/controllers"
+	"github.com/ugniusin/instago/framework/config"
+	galleryControllers "github.com/ugniusin/instago/src/application/gallery/controllers"
 	"net/http"
 )
 
 func main() {
-	galleryController := controllers.NewGalleryController()
+	config := config.GetConfigs("./config.json")
+
+	galleryController := galleryControllers.NewGalleryController(
+		config.Instagram["ClientId"],
+		config.Instagram["ClientSecret"],
+		config.Instagram["RedirectUri"],
+	)
 
 	http.HandleFunc("/auth", galleryController.Authorise)
 	http.HandleFunc("/redirect", galleryController.Redirect)
